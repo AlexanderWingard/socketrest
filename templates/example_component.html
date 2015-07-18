@@ -1,0 +1,20 @@
+<div style="font-size: 3em; width: 100%; height: 100%; text-align: center;">
+<div id="data"></div>
+<button onclick="ajax()"/>Set</button>
+</div>
+<script>
+function ajax() {
+    xhr = new XMLHttpRequest();
+    xhr.open('GET', '/api/set', true)
+    xhr.send(null);
+}
+function setData(data) {
+    switch (data.room) {
+    case "/api/get":
+        document.getElementById("data").innerHTML = data['data']
+        break;
+    }
+}
+{% set services = ["/api/get"] %}
+{% include "component.js" %}
+</script>

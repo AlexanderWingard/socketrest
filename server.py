@@ -6,7 +6,7 @@ app.debug = True
 socketio = SocketIO(app)
 client = app.test_client()
 data = 0
-
+data2 = 0
 
 @app.route('/')
 def index():
@@ -21,11 +21,21 @@ def set():
     push_api('/api/get')
     return "ok"
 
+@app.route('/api/set2')
+def set2():
+    global data2
+    data2 -= 1
+    push_api('/api/get2')
+    return "ok"
+
 
 @app.route('/api/get')
 def get():
     return str(data)
 
+@app.route('/api/get2')
+def get2():
+    return str(data2)
 
 def call_api(api):
     return {'room': api, 'data': client.get(api).data }

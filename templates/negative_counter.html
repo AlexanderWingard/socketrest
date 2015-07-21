@@ -1,6 +1,6 @@
-<div id="counter_component">
+<div id="negative_component">
 <div style="font-size: 3em; width: 100%; height: 100%; text-align: center;">
-<div id="counter"></div>
+<div id="negative_counter"></div>
 <button>Set</button>
 </div>
 </div>
@@ -8,22 +8,22 @@
 (function(component_name) {
    var ajax = function() {
      xhr = new XMLHttpRequest();
-     xhr.open('GET', '/api/set', true)
+     xhr.open('GET', '/api/set2', true)
      xhr.send(null);
    };
 
    var setData = function(data) {
      console.log('***', 'setData', component_name, data);
      switch (data.room) {
-       case "/api/get":
-         document.getElementById("counter").innerHTML = data['data'];
+       case "/api/get2":
+         document.getElementById("negative_counter").innerHTML = data['data'];
          break;
      }
    };
 
-   document.querySelector("#counter_component button").onclick = ajax;
+   document.querySelector("#negative_component button").onclick = ajax;
 
-   {% set services = ["/api/get"] %}
+   {% set services = ["/api/get2"] %}
    {% include "component.js" %}
- })('counter');
+ })('negative counter');
 </script>
